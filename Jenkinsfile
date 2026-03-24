@@ -10,7 +10,7 @@ pipeline {
     environment {
         // Docker Hub Configuration
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
-        DOCKER_HUB_USERNAME  = 'queenivas'
+        DOCKER_HUB_USERNAME  = 'desmondzinkeng'
         DOCKER_IMAGE_NAME    = 'appointment-app'
         DOCKER_IMAGE_TAG     = "${BUILD_NUMBER}"
         DOCKER_IMAGE_LATEST  = "${DOCKER_HUB_USERNAME}/${DOCKER_IMAGE_NAME}:latest"
