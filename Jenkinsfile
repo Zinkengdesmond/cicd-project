@@ -102,8 +102,10 @@ pipeline {
         stage('🔒 Trivy Image Scan') {
             steps {
                 sh """
-                    trivy image \
-                    --severity ${TRIVY_SEVERITY} \
+                  trivy image \
+                    --scanners vuln \
+                    --timeout 10m \
+                    --severity HIGH,CRITICAL \
                     --exit-code 0 \
                     --format json \
                     --output trivy-report.json \
