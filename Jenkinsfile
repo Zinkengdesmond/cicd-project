@@ -133,8 +133,9 @@ pipeline {
 
         stage('🚀 Deploy to Kubernetes') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+            
                     sh """
+                        export KUBECONFIG=/var/jenkins_home/.kube/config
                         echo "Using kubeconfig:"
                         ls -l $KUBECONFIG
 
@@ -160,7 +161,7 @@ pipeline {
             spec:
               containers:
               - name: ${APP_NAME}
-              image: ${DOCKER_IMAGE_VERSION}
+                image: ${DOCKER_IMAGE_VERSION}
               ports:
               - containerPort: 8080
       ---
@@ -183,7 +184,7 @@ pipeline {
                       kubectl rollout status deployment/${APP_NAME} -n ${K8S_NAMESPACE} --timeout=5m
                        
                  """              
-              }
+              
           }
       }
         stage('✅ Verify Deployment') {
